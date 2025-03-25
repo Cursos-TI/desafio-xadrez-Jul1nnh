@@ -1,44 +1,68 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+void bispo(int n) {
+    if (n == 0) return; 
+
+    // Loop externo
+    for (int i = 0; i < 1; i++) {
+        printf("cima, ");
+
+        // Loop interno 
+        for (int j = 0; j < 1; j++) {
+            printf("direita\n");
+        }
+    }
+
+    bispo(n - 1); 
+}
+
+void torre(int n) {
+    if (n > 0) {
+        printf("direita\n");
+        torre(n - 1);
+    } 
+}
+
+void rainha(int n) {
+    if (n > 0) {
+        printf("esquerda\n");
+        rainha(n - 1); 
+    }
+}
+
+void cavalo() {
+    
+    // Loop externo
+    for (int i = 0; i < 2; i++) { 
+        printf("cima\n"); 
+        
+        // Loop interno
+        for (int j = 0; j < 1; j++) {
+            if (i == 1 && j == 0) { 
+                printf("direita\n"); 
+            }
+        }
+    }
+}
 
 int main() {
-
-    int T = 1, B = 1;
-
-    printf("TORRE: \n");
-    while (T <= 5) // torre
-    {
-        printf("direita\n");
-        T++;
-    }
+    int numeroBispo = 5;
+    int numeroTorre = 5;
+    int numeroRainha = 8;
 
     printf("\nBISPO: \n");
-    do // bispo
-    {
-        printf("cima, direita\n");    
-        B++;
-    } while (B <= 5);
+    bispo(numeroBispo);
+
+    printf("\nTORRE: \n");
+    torre(numeroTorre);
 
     printf("\nRAINHA: \n");
-    for (int R = 1; R <= 8; R++) // rainha
-    {
-        printf("esquerda\n");
-    }
+    rainha(numeroRainha);
 
     printf("\nCAVALO: \n");
-    for (int C = 1; C <= 3; C++) //cavalo
-    {
-        printf("baixo\n");
+    cavalo();
 
-        while (C == 2)
-        {
-            printf("esquerda\n");
-            C++;
-        }
-                
-    }
+
     return 0;
+   
 }
